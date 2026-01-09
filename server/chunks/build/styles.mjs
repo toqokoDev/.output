@@ -1,8 +1,8 @@
 const interopDefault = r => r.default || r || [];
 const styles = {
   "node_modules/nuxt/dist/app/entry.js": () => import('./entry-styles.DyiCjgwP.mjs').then(interopDefault),
-  "pages/index.vue": () => import('./index-styles.J5RjQ1SL.mjs').then(interopDefault),
   "pages/about.vue": () => import('./about-styles.CTvovRLA.mjs').then(interopDefault),
+  "pages/index.vue": () => import('./index-styles.J5RjQ1SL.mjs').then(interopDefault),
   "pages/index.vue?vue&type=style&index=0&scoped=f61ceca7&lang.css": () => import('./index-styles.J5RjQ1SL.mjs').then(interopDefault),
   "pages/about.vue?vue&type=style&index=0&scoped=357fee42&lang.css": () => import('./about-styles.CTvovRLA.mjs').then(interopDefault),
   "node_modules/nuxt/dist/app/components/error-500.vue": () => import('./error-500-styles.BXdWm9Kk.mjs').then(interopDefault),
