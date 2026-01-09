@@ -1,11 +1,14 @@
-import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import http from 'node:http';
+import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import mysql from 'mysql2/promise';
+import http from 'node:http';
 import https from 'node:https';
 import { EventEmitter } from 'node:events';
 import { Buffer as Buffer$1 } from 'node:buffer';
 import { promises, existsSync } from 'node:fs';
-import { resolve as resolve$1, dirname as dirname$1, join } from 'node:path';
-import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { getIcons } from '@iconify/utils';
+import { createHash } from 'node:crypto';
+import { consola } from 'consola';
+import { resolve as resolve$1, dirname as dirname$1, join } from 'node:path';
 
 const suspectProtoRx = /"(?:_|\\u0{2}5[Ff]){2}(?:p|\\u0{2}70)(?:r|\\u0{2}72)(?:o|\\u0{2}6[Ff])(?:t|\\u0{2}74)(?:o|\\u0{2}6[Ff])(?:_|\\u0{2}5[Ff]){2}"\s*:/;
 const suspectConstructorRx = /"(?:c|\\u0063)(?:o|\\u006[Ff])(?:n|\\u006[Ee])(?:s|\\u0073)(?:t|\\u0074)(?:r|\\u0072)(?:u|\\u0075)(?:c|\\u0063)(?:t|\\u0074)(?:o|\\u006[Ff])(?:r|\\u0072)"\s*:/;
@@ -660,7 +663,7 @@ const defuFn = createDefu((object, key, currentValue) => {
   }
 });
 
-function o(n){throw new Error(`${n} is not implemented yet!`)}let i$1 = class i extends EventEmitter{__unenv__={};readableEncoding=null;readableEnded=true;readableFlowing=false;readableHighWaterMark=0;readableLength=0;readableObjectMode=false;readableAborted=false;readableDidRead=false;closed=false;errored=null;readable=false;destroyed=false;static from(e,t){return new i(t)}constructor(e){super();}_read(e){}read(e){}setEncoding(e){return this}pause(){return this}resume(){return this}isPaused(){return  true}unpipe(e){return this}unshift(e,t){}wrap(e){return this}push(e,t){return  false}_destroy(e,t){this.removeAllListeners();}destroy(e){return this.destroyed=true,this._destroy(e),this}pipe(e,t){return {}}compose(e,t){throw new Error("Method not implemented.")}[Symbol.asyncDispose](){return this.destroy(),Promise.resolve()}async*[Symbol.asyncIterator](){throw o("Readable.asyncIterator")}iterator(e){throw o("Readable.iterator")}map(e,t){throw o("Readable.map")}filter(e,t){throw o("Readable.filter")}forEach(e,t){throw o("Readable.forEach")}reduce(e,t,r){throw o("Readable.reduce")}find(e,t){throw o("Readable.find")}findIndex(e,t){throw o("Readable.findIndex")}some(e,t){throw o("Readable.some")}toArray(e){throw o("Readable.toArray")}every(e,t){throw o("Readable.every")}flatMap(e,t){throw o("Readable.flatMap")}drop(e,t){throw o("Readable.drop")}take(e,t){throw o("Readable.take")}asIndexedPairs(e){throw o("Readable.asIndexedPairs")}};let l$1 = class l extends EventEmitter{__unenv__={};writable=true;writableEnded=false;writableFinished=false;writableHighWaterMark=0;writableLength=0;writableObjectMode=false;writableCorked=0;closed=false;errored=null;writableNeedDrain=false;writableAborted=false;destroyed=false;_data;_encoding="utf8";constructor(e){super();}pipe(e,t){return {}}_write(e,t,r){if(this.writableEnded){r&&r();return}if(this._data===void 0)this._data=e;else {const s=typeof this._data=="string"?Buffer$1.from(this._data,this._encoding||t||"utf8"):this._data,a=typeof e=="string"?Buffer$1.from(e,t||this._encoding||"utf8"):e;this._data=Buffer$1.concat([s,a]);}this._encoding=t,r&&r();}_writev(e,t){}_destroy(e,t){}_final(e){}write(e,t,r){const s=typeof t=="string"?this._encoding:"utf8",a=typeof t=="function"?t:typeof r=="function"?r:void 0;return this._write(e,s,a),true}setDefaultEncoding(e){return this}end(e,t,r){const s=typeof e=="function"?e:typeof t=="function"?t:typeof r=="function"?r:void 0;if(this.writableEnded)return s&&s(),this;const a=e===s?void 0:e;if(a){const u=t===s?void 0:t;this.write(a,u,s);}return this.writableEnded=true,this.writableFinished=true,this.emit("close"),this.emit("finish"),this}cork(){}uncork(){}destroy(e){return this.destroyed=true,delete this._data,this.removeAllListeners(),this}compose(e,t){throw new Error("Method not implemented.")}[Symbol.asyncDispose](){return Promise.resolve()}};const c=class{allowHalfOpen=true;_destroy;constructor(e=new i$1,t=new l$1){Object.assign(this,e),Object.assign(this,t),this._destroy=m(e._destroy,t._destroy);}};function _(){return Object.assign(c.prototype,i$1.prototype),Object.assign(c.prototype,l$1.prototype),c}function m(...n){return function(...e){for(const t of n)t(...e);}}const g=_();class A extends g{__unenv__={};bufferSize=0;bytesRead=0;bytesWritten=0;connecting=false;destroyed=false;pending=false;localAddress="";localPort=0;remoteAddress="";remoteFamily="";remotePort=0;autoSelectFamilyAttemptedAddresses=[];readyState="readOnly";constructor(e){super();}write(e,t,r){return  false}connect(e,t,r){return this}end(e,t,r){return this}setEncoding(e){return this}pause(){return this}resume(){return this}setTimeout(e,t){return this}setNoDelay(e){return this}setKeepAlive(e,t){return this}address(){return {}}unref(){return this}ref(){return this}destroySoon(){this.destroy();}resetAndDestroy(){const e=new Error("ERR_SOCKET_CLOSED");return e.code="ERR_SOCKET_CLOSED",this.destroy(e),this}}class y extends i$1{aborted=false;httpVersion="1.1";httpVersionMajor=1;httpVersionMinor=1;complete=true;connection;socket;headers={};trailers={};method="GET";url="/";statusCode=200;statusMessage="";closed=false;errored=null;readable=false;constructor(e){super(),this.socket=this.connection=e||new A;}get rawHeaders(){const e=this.headers,t=[];for(const r in e)if(Array.isArray(e[r]))for(const s of e[r])t.push(r,s);else t.push(r,e[r]);return t}get rawTrailers(){return []}setTimeout(e,t){return this}get headersDistinct(){return p(this.headers)}get trailersDistinct(){return p(this.trailers)}}function p(n){const e={};for(const[t,r]of Object.entries(n))t&&(e[t]=(Array.isArray(r)?r:[r]).filter(Boolean));return e}class w extends l$1{statusCode=200;statusMessage="";upgrading=false;chunkedEncoding=false;shouldKeepAlive=false;useChunkedEncodingByDefault=false;sendDate=false;finished=false;headersSent=false;strictContentLength=false;connection=null;socket=null;req;_headers={};constructor(e){super(),this.req=e;}assignSocket(e){e._httpMessage=this,this.socket=e,this.connection=e,this.emit("socket",e),this._flush();}_flush(){this.flushHeaders();}detachSocket(e){}writeContinue(e){}writeHead(e,t,r){e&&(this.statusCode=e),typeof t=="string"&&(this.statusMessage=t,t=void 0);const s=r||t;if(s&&!Array.isArray(s))for(const a in s)this.setHeader(a,s[a]);return this.headersSent=true,this}writeProcessing(){}setTimeout(e,t){return this}appendHeader(e,t){e=e.toLowerCase();const r=this._headers[e],s=[...Array.isArray(r)?r:[r],...Array.isArray(t)?t:[t]].filter(Boolean);return this._headers[e]=s.length>1?s:s[0],this}setHeader(e,t){return this._headers[e.toLowerCase()]=t,this}setHeaders(e){for(const[t,r]of Object.entries(e))this.setHeader(t,r);return this}getHeader(e){return this._headers[e.toLowerCase()]}getHeaders(){return this._headers}getHeaderNames(){return Object.keys(this._headers)}hasHeader(e){return e.toLowerCase()in this._headers}removeHeader(e){delete this._headers[e.toLowerCase()];}addTrailers(e){}flushHeaders(){}writeEarlyHints(e,t){typeof t=="function"&&t();}}const E=(()=>{const n=function(){};return n.prototype=Object.create(null),n})();function R(n={}){const e=new E,t=Array.isArray(n)||H(n)?n:Object.entries(n);for(const[r,s]of t)if(s){if(e[r]===void 0){e[r]=s;continue}e[r]=[...Array.isArray(e[r])?e[r]:[e[r]],...Array.isArray(s)?s:[s]];}return e}function H(n){return typeof n?.entries=="function"}function v(n={}){if(n instanceof Headers)return n;const e=new Headers;for(const[t,r]of Object.entries(n))if(r!==void 0){if(Array.isArray(r)){for(const s of r)e.append(t,String(s));continue}e.set(t,String(r));}return e}const S=new Set([101,204,205,304]);async function b(n,e){const t=new y,r=new w(t);t.url=e.url?.toString()||"/";let s;if(!t.url.startsWith("/")){const d=new URL(t.url);s=d.host,t.url=d.pathname+d.search+d.hash;}t.method=e.method||"GET",t.headers=R(e.headers||{}),t.headers.host||(t.headers.host=e.host||s||"localhost"),t.connection.encrypted=t.connection.encrypted||e.protocol==="https",t.body=e.body||null,t.__unenv__=e.context,await n(t,r);let a=r._data;(S.has(r.statusCode)||t.method.toUpperCase()==="HEAD")&&(a=null,delete r._headers["content-length"]);const u={status:r.statusCode,statusText:r.statusMessage,headers:r._headers,body:a};return t.destroy(),r.destroy(),u}async function C(n,e,t={}){try{const r=await b(n,{url:e,...t});return new Response(r.body,{status:r.status,statusText:r.statusText,headers:v(r.headers)})}catch(r){return new Response(r.toString(),{status:Number.parseInt(r.statusCode||r.code)||500,statusText:r.statusText})}}
+function o(n){throw new Error(`${n} is not implemented yet!`)}let i$1 = class i extends EventEmitter{__unenv__={};readableEncoding=null;readableEnded=true;readableFlowing=false;readableHighWaterMark=0;readableLength=0;readableObjectMode=false;readableAborted=false;readableDidRead=false;closed=false;errored=null;readable=false;destroyed=false;static from(e,t){return new i(t)}constructor(e){super();}_read(e){}read(e){}setEncoding(e){return this}pause(){return this}resume(){return this}isPaused(){return  true}unpipe(e){return this}unshift(e,t){}wrap(e){return this}push(e,t){return  false}_destroy(e,t){this.removeAllListeners();}destroy(e){return this.destroyed=true,this._destroy(e),this}pipe(e,t){return {}}compose(e,t){throw new Error("Method not implemented.")}[Symbol.asyncDispose](){return this.destroy(),Promise.resolve()}async*[Symbol.asyncIterator](){throw o("Readable.asyncIterator")}iterator(e){throw o("Readable.iterator")}map(e,t){throw o("Readable.map")}filter(e,t){throw o("Readable.filter")}forEach(e,t){throw o("Readable.forEach")}reduce(e,t,r){throw o("Readable.reduce")}find(e,t){throw o("Readable.find")}findIndex(e,t){throw o("Readable.findIndex")}some(e,t){throw o("Readable.some")}toArray(e){throw o("Readable.toArray")}every(e,t){throw o("Readable.every")}flatMap(e,t){throw o("Readable.flatMap")}drop(e,t){throw o("Readable.drop")}take(e,t){throw o("Readable.take")}asIndexedPairs(e){throw o("Readable.asIndexedPairs")}};let l$1 = class l extends EventEmitter{__unenv__={};writable=true;writableEnded=false;writableFinished=false;writableHighWaterMark=0;writableLength=0;writableObjectMode=false;writableCorked=0;closed=false;errored=null;writableNeedDrain=false;writableAborted=false;destroyed=false;_data;_encoding="utf8";constructor(e){super();}pipe(e,t){return {}}_write(e,t,r){if(this.writableEnded){r&&r();return}if(this._data===void 0)this._data=e;else {const s=typeof this._data=="string"?Buffer$1.from(this._data,this._encoding||t||"utf8"):this._data,a=typeof e=="string"?Buffer$1.from(e,t||this._encoding||"utf8"):e;this._data=Buffer$1.concat([s,a]);}this._encoding=t,r&&r();}_writev(e,t){}_destroy(e,t){}_final(e){}write(e,t,r){const s=typeof t=="string"?this._encoding:"utf8",a=typeof t=="function"?t:typeof r=="function"?r:void 0;return this._write(e,s,a),true}setDefaultEncoding(e){return this}end(e,t,r){const s=typeof e=="function"?e:typeof t=="function"?t:typeof r=="function"?r:void 0;if(this.writableEnded)return s&&s(),this;const a=e===s?void 0:e;if(a){const u=t===s?void 0:t;this.write(a,u,s);}return this.writableEnded=true,this.writableFinished=true,this.emit("close"),this.emit("finish"),this}cork(){}uncork(){}destroy(e){return this.destroyed=true,delete this._data,this.removeAllListeners(),this}compose(e,t){throw new Error("Method not implemented.")}[Symbol.asyncDispose](){return Promise.resolve()}};const c$1=class c{allowHalfOpen=true;_destroy;constructor(e=new i$1,t=new l$1){Object.assign(this,e),Object.assign(this,t),this._destroy=m(e._destroy,t._destroy);}};function _(){return Object.assign(c$1.prototype,i$1.prototype),Object.assign(c$1.prototype,l$1.prototype),c$1}function m(...n){return function(...e){for(const t of n)t(...e);}}const g=_();class A extends g{__unenv__={};bufferSize=0;bytesRead=0;bytesWritten=0;connecting=false;destroyed=false;pending=false;localAddress="";localPort=0;remoteAddress="";remoteFamily="";remotePort=0;autoSelectFamilyAttemptedAddresses=[];readyState="readOnly";constructor(e){super();}write(e,t,r){return  false}connect(e,t,r){return this}end(e,t,r){return this}setEncoding(e){return this}pause(){return this}resume(){return this}setTimeout(e,t){return this}setNoDelay(e){return this}setKeepAlive(e,t){return this}address(){return {}}unref(){return this}ref(){return this}destroySoon(){this.destroy();}resetAndDestroy(){const e=new Error("ERR_SOCKET_CLOSED");return e.code="ERR_SOCKET_CLOSED",this.destroy(e),this}}class y extends i$1{aborted=false;httpVersion="1.1";httpVersionMajor=1;httpVersionMinor=1;complete=true;connection;socket;headers={};trailers={};method="GET";url="/";statusCode=200;statusMessage="";closed=false;errored=null;readable=false;constructor(e){super(),this.socket=this.connection=e||new A;}get rawHeaders(){const e=this.headers,t=[];for(const r in e)if(Array.isArray(e[r]))for(const s of e[r])t.push(r,s);else t.push(r,e[r]);return t}get rawTrailers(){return []}setTimeout(e,t){return this}get headersDistinct(){return p(this.headers)}get trailersDistinct(){return p(this.trailers)}}function p(n){const e={};for(const[t,r]of Object.entries(n))t&&(e[t]=(Array.isArray(r)?r:[r]).filter(Boolean));return e}class w extends l$1{statusCode=200;statusMessage="";upgrading=false;chunkedEncoding=false;shouldKeepAlive=false;useChunkedEncodingByDefault=false;sendDate=false;finished=false;headersSent=false;strictContentLength=false;connection=null;socket=null;req;_headers={};constructor(e){super(),this.req=e;}assignSocket(e){e._httpMessage=this,this.socket=e,this.connection=e,this.emit("socket",e),this._flush();}_flush(){this.flushHeaders();}detachSocket(e){}writeContinue(e){}writeHead(e,t,r){e&&(this.statusCode=e),typeof t=="string"&&(this.statusMessage=t,t=void 0);const s=r||t;if(s&&!Array.isArray(s))for(const a in s)this.setHeader(a,s[a]);return this.headersSent=true,this}writeProcessing(){}setTimeout(e,t){return this}appendHeader(e,t){e=e.toLowerCase();const r=this._headers[e],s=[...Array.isArray(r)?r:[r],...Array.isArray(t)?t:[t]].filter(Boolean);return this._headers[e]=s.length>1?s:s[0],this}setHeader(e,t){return this._headers[e.toLowerCase()]=t,this}setHeaders(e){for(const[t,r]of Object.entries(e))this.setHeader(t,r);return this}getHeader(e){return this._headers[e.toLowerCase()]}getHeaders(){return this._headers}getHeaderNames(){return Object.keys(this._headers)}hasHeader(e){return e.toLowerCase()in this._headers}removeHeader(e){delete this._headers[e.toLowerCase()];}addTrailers(e){}flushHeaders(){}writeEarlyHints(e,t){typeof t=="function"&&t();}}const E=(()=>{const n=function(){};return n.prototype=Object.create(null),n})();function R(n={}){const e=new E,t=Array.isArray(n)||H(n)?n:Object.entries(n);for(const[r,s]of t)if(s){if(e[r]===void 0){e[r]=s;continue}e[r]=[...Array.isArray(e[r])?e[r]:[e[r]],...Array.isArray(s)?s:[s]];}return e}function H(n){return typeof n?.entries=="function"}function v(n={}){if(n instanceof Headers)return n;const e=new Headers;for(const[t,r]of Object.entries(n))if(r!==void 0){if(Array.isArray(r)){for(const s of r)e.append(t,String(s));continue}e.set(t,String(r));}return e}const S=new Set([101,204,205,304]);async function b(n,e){const t=new y,r=new w(t);t.url=e.url?.toString()||"/";let s;if(!t.url.startsWith("/")){const d=new URL(t.url);s=d.host,t.url=d.pathname+d.search+d.hash;}t.method=e.method||"GET",t.headers=R(e.headers||{}),t.headers.host||(t.headers.host=e.host||s||"localhost"),t.connection.encrypted=t.connection.encrypted||e.protocol==="https",t.body=e.body||null,t.__unenv__=e.context,await n(t,r);let a=r._data;(S.has(r.statusCode)||t.method.toUpperCase()==="HEAD")&&(a=null,delete r._headers["content-length"]);const u={status:r.statusCode,statusText:r.statusMessage,headers:r._headers,body:a};return t.destroy(),r.destroy(),u}async function C(n,e,t={}){try{const r=await b(n,{url:e,...t});return new Response(r.body,{status:r.status,statusText:r.statusText,headers:v(r.headers)})}catch(r){return new Response(r.toString(),{status:Number.parseInt(r.statusCode||r.code)||500,statusText:r.statusText})}}
 
 function hasProp(obj, prop) {
   try {
@@ -2515,7 +2518,7 @@ const fetch = globalThis.fetch ? (...args) => globalThis.fetch(...args) : create
 const Headers$1 = globalThis.Headers || s$1;
 const AbortController = globalThis.AbortController || i;
 const ofetch = createFetch({ fetch, Headers: Headers$1, AbortController });
-const $fetch = ofetch;
+const $fetch$1 = ofetch;
 
 function wrapToPromise(value) {
   if (!value || typeof value.then !== "function") {
@@ -3301,7 +3304,13 @@ function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
 }
 
+function serialize$1(o){return typeof o=="string"?`'${o}'`:new c().serialize(o)}const c=/*@__PURE__*/function(){class o{#t=new Map;compare(t,r){const e=typeof t,n=typeof r;return e==="string"&&n==="string"?t.localeCompare(r):e==="number"&&n==="number"?t-r:String.prototype.localeCompare.call(this.serialize(t,true),this.serialize(r,true))}serialize(t,r){if(t===null)return "null";switch(typeof t){case "string":return r?t:`'${t}'`;case "bigint":return `${t}n`;case "object":return this.$object(t);case "function":return this.$function(t)}return String(t)}serializeObject(t){const r=Object.prototype.toString.call(t);if(r!=="[object Object]")return this.serializeBuiltInType(r.length<10?`unknown:${r}`:r.slice(8,-1),t);const e=t.constructor,n=e===Object||e===void 0?"":e.name;if(n!==""&&globalThis[n]===e)return this.serializeBuiltInType(n,t);if(typeof t.toJSON=="function"){const i=t.toJSON();return n+(i!==null&&typeof i=="object"?this.$object(i):`(${this.serialize(i)})`)}return this.serializeObjectEntries(n,Object.entries(t))}serializeBuiltInType(t,r){const e=this["$"+t];if(e)return e.call(this,r);if(typeof r?.entries=="function")return this.serializeObjectEntries(t,r.entries());throw new Error(`Cannot serialize ${t}`)}serializeObjectEntries(t,r){const e=Array.from(r).sort((i,a)=>this.compare(i[0],a[0]));let n=`${t}{`;for(let i=0;i<e.length;i++){const[a,l]=e[i];n+=`${this.serialize(a,true)}:${this.serialize(l)}`,i<e.length-1&&(n+=",");}return n+"}"}$object(t){let r=this.#t.get(t);return r===void 0&&(this.#t.set(t,`#${this.#t.size}`),r=this.serializeObject(t),this.#t.set(t,r)),r}$function(t){const r=Function.prototype.toString.call(t);return r.slice(-15)==="[native code] }"?`${t.name||""}()[native]`:`${t.name}(${t.length})${r.replace(/\s*\n\s*/g,"")}`}$Array(t){let r="[";for(let e=0;e<t.length;e++)r+=this.serialize(t[e]),e<t.length-1&&(r+=",");return r+"]"}$Date(t){try{return `Date(${t.toISOString()})`}catch{return "Date(null)"}}$ArrayBuffer(t){return `ArrayBuffer[${new Uint8Array(t).join(",")}]`}$Set(t){return `Set${this.$Array(Array.from(t).sort((r,e)=>this.compare(r,e)))}`}$Map(t){return this.serializeObjectEntries("Map",t.entries())}}for(const s of ["Error","RegExp","URL"])o.prototype["$"+s]=function(t){return `${s}(${t})`};for(const s of ["Int8Array","Uint8Array","Uint8ClampedArray","Int16Array","Uint16Array","Int32Array","Uint32Array","Float32Array","Float64Array"])o.prototype["$"+s]=function(t){return `${s}[${t.join(",")}]`};for(const s of ["BigInt64Array","BigUint64Array"])o.prototype["$"+s]=function(t){return `${s}[${t.join("n,")}${t.length>0?"n":""}]`};return o}();
+
 const e=globalThis.process?.getBuiltinModule?.("crypto")?.hash,r="sha256",s="base64url";function digest(t){if(e)return e(r,t,s);const o=createHash(r).update(t);return globalThis.process?.versions?.webcontainer?o.digest().toString(s):o.digest(s)}
+
+function hash$1(input) {
+  return digest(serialize$1(input));
+}
 
 const Hasher = /* @__PURE__ */ (() => {
   class Hasher2 {
@@ -3904,7 +3913,244 @@ function klona(x) {
 }
 
 const inlineAppConfig = {
-  "nuxt": {}
+  "nuxt": {},
+  "icon": {
+    "provider": "server",
+    "class": "",
+    "aliases": {},
+    "iconifyApiEndpoint": "https://api.iconify.design",
+    "localApiEndpoint": "/api/_nuxt_icon",
+    "fallbackToApi": true,
+    "cssSelectorPrefix": "i-",
+    "cssWherePseudo": true,
+    "mode": "css",
+    "attrs": {
+      "aria-hidden": true
+    },
+    "collections": [
+      "academicons",
+      "akar-icons",
+      "ant-design",
+      "arcticons",
+      "basil",
+      "bi",
+      "bitcoin-icons",
+      "bpmn",
+      "brandico",
+      "bx",
+      "bxl",
+      "bxs",
+      "bytesize",
+      "carbon",
+      "catppuccin",
+      "cbi",
+      "charm",
+      "ci",
+      "cib",
+      "cif",
+      "cil",
+      "circle-flags",
+      "circum",
+      "clarity",
+      "codex",
+      "codicon",
+      "covid",
+      "cryptocurrency",
+      "cryptocurrency-color",
+      "cuida",
+      "dashicons",
+      "devicon",
+      "devicon-plain",
+      "dinkie-icons",
+      "duo-icons",
+      "ei",
+      "el",
+      "emojione",
+      "emojione-monotone",
+      "emojione-v1",
+      "entypo",
+      "entypo-social",
+      "eos-icons",
+      "ep",
+      "et",
+      "eva",
+      "f7",
+      "fa",
+      "fa-brands",
+      "fa-regular",
+      "fa-solid",
+      "fa6-brands",
+      "fa6-regular",
+      "fa6-solid",
+      "fa7-brands",
+      "fa7-regular",
+      "fa7-solid",
+      "fad",
+      "famicons",
+      "fe",
+      "feather",
+      "file-icons",
+      "flag",
+      "flagpack",
+      "flat-color-icons",
+      "flat-ui",
+      "flowbite",
+      "fluent",
+      "fluent-color",
+      "fluent-emoji",
+      "fluent-emoji-flat",
+      "fluent-emoji-high-contrast",
+      "fluent-mdl2",
+      "fontelico",
+      "fontisto",
+      "formkit",
+      "foundation",
+      "fxemoji",
+      "gala",
+      "game-icons",
+      "garden",
+      "geo",
+      "gg",
+      "gis",
+      "gravity-ui",
+      "gridicons",
+      "grommet-icons",
+      "guidance",
+      "healthicons",
+      "heroicons",
+      "heroicons-outline",
+      "heroicons-solid",
+      "hugeicons",
+      "humbleicons",
+      "ic",
+      "icomoon-free",
+      "icon-park",
+      "icon-park-outline",
+      "icon-park-solid",
+      "icon-park-twotone",
+      "iconamoon",
+      "iconoir",
+      "icons8",
+      "il",
+      "ion",
+      "iwwa",
+      "ix",
+      "jam",
+      "la",
+      "lets-icons",
+      "line-md",
+      "lineicons",
+      "logos",
+      "ls",
+      "lsicon",
+      "lucide",
+      "lucide-lab",
+      "mage",
+      "majesticons",
+      "maki",
+      "map",
+      "marketeq",
+      "material-icon-theme",
+      "material-symbols",
+      "material-symbols-light",
+      "mdi",
+      "mdi-light",
+      "medical-icon",
+      "memory",
+      "meteocons",
+      "meteor-icons",
+      "mi",
+      "mingcute",
+      "mono-icons",
+      "mynaui",
+      "nimbus",
+      "nonicons",
+      "noto",
+      "noto-v1",
+      "nrk",
+      "octicon",
+      "oi",
+      "ooui",
+      "openmoji",
+      "oui",
+      "pajamas",
+      "pepicons",
+      "pepicons-pencil",
+      "pepicons-pop",
+      "pepicons-print",
+      "ph",
+      "picon",
+      "pixel",
+      "pixelarticons",
+      "prime",
+      "proicons",
+      "ps",
+      "qlementine-icons",
+      "quill",
+      "radix-icons",
+      "raphael",
+      "ri",
+      "rivet-icons",
+      "roentgen",
+      "si",
+      "si-glyph",
+      "sidekickicons",
+      "simple-icons",
+      "simple-line-icons",
+      "skill-icons",
+      "solar",
+      "stash",
+      "streamline",
+      "streamline-block",
+      "streamline-color",
+      "streamline-cyber",
+      "streamline-cyber-color",
+      "streamline-emojis",
+      "streamline-flex",
+      "streamline-flex-color",
+      "streamline-freehand",
+      "streamline-freehand-color",
+      "streamline-kameleon-color",
+      "streamline-logos",
+      "streamline-pixel",
+      "streamline-plump",
+      "streamline-plump-color",
+      "streamline-sharp",
+      "streamline-sharp-color",
+      "streamline-stickies-color",
+      "streamline-ultimate",
+      "streamline-ultimate-color",
+      "subway",
+      "svg-spinners",
+      "system-uicons",
+      "tabler",
+      "tdesign",
+      "teenyicons",
+      "temaki",
+      "token",
+      "token-branded",
+      "topcoat",
+      "twemoji",
+      "typcn",
+      "uil",
+      "uim",
+      "uis",
+      "uit",
+      "uiw",
+      "unjs",
+      "vaadin",
+      "vs",
+      "vscode-icons",
+      "websymbol",
+      "weui",
+      "whh",
+      "wi",
+      "wpf",
+      "zmdi",
+      "zondicons"
+    ],
+    "fetchTimeout": 1500
+  }
 };
 
 
@@ -4007,7 +4253,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/refactor/",
-    "buildId": "4e035e9d-1bfc-487e-af4d-966789e9ff49",
+    "buildId": "9a5f0304-afbd-4129-badc-3a55dbcb0c35",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -4034,7 +4280,14 @@ const _inlineRuntimeConfig = {
       }
     }
   },
-  "public": {}
+  "public": {},
+  "dbHost": "localhost",
+  "dbUser": "root",
+  "dbPassword": "11111",
+  "dbName": "bglk_db",
+  "icon": {
+    "serverKnownCssClasses": []
+  }
 };
 const envOptions = {
   prefix: "NITRO_",
@@ -4056,7 +4309,12 @@ function useRuntimeConfig(event) {
   event.context.nitro.runtimeConfig = runtimeConfig;
   return runtimeConfig;
 }
-_deepFreeze(klona(appConfig));
+const _sharedAppConfig = _deepFreeze(klona(appConfig));
+function useAppConfig(event) {
+  {
+    return _sharedAppConfig;
+  }
+}
 function _deepFreeze(object) {
   const propNames = Object.getOwnPropertyNames(object);
   for (const name of propNames) {
@@ -4198,9 +4456,9 @@ function executeAsync(function_) {
   return [awaitable, restore];
 }
 
-const config = useRuntimeConfig();
+const config$1 = useRuntimeConfig();
 const _routeRulesMatcher = toRouteMatcher(
-  createRouter$1({ routes: config.nitro.routeRules })
+  createRouter$1({ routes: config$1.nitro.routeRules })
 );
 function createRouteRulesHandler(ctx) {
   return eventHandler((event) => {
@@ -4447,117 +4705,173 @@ const plugins = [
 ];
 
 const assets = {
+  "/favicon.ico": {
+    "type": "image/vnd.microsoft.icon",
+    "etag": "\"a2be-nPUus7AxhHw222qoXSBpwjvHsG0\"",
+    "mtime": "2026-01-09T09:25:55.885Z",
+    "size": 41662,
+    "path": "../public/favicon.ico"
+  },
   "/_nuxt/about.eFyAn1Vw.css": {
     "type": "text/css; charset=utf-8",
     "etag": "\"11c-7RXRcCHt9MW9VbaHWzpFBMakOgk\"",
-    "mtime": "2026-01-09T07:20:22.666Z",
+    "mtime": "2026-01-09T10:07:01.713Z",
     "size": 284,
     "path": "../public/_nuxt/about.eFyAn1Vw.css"
   },
-  "/_nuxt/B6nUtkcZ.js": {
+  "/_nuxt/B2plItPV.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"edc-F9EESme+9Zo1UQo6wu+Q1bs1f7U\"",
-    "mtime": "2026-01-09T07:20:22.667Z",
-    "size": 3804,
-    "path": "../public/_nuxt/B6nUtkcZ.js"
+    "etag": "\"f04-IyFLv1LakI9Ji6CnKHHX9PULDJ8\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 3844,
+    "path": "../public/_nuxt/B2plItPV.js"
   },
-  "/_nuxt/BgGYGHv6.js": {
+  "/_nuxt/B4yNQd5l.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"d74-ZWAh0Neo6ONXDnzlM1QvaP1i6V8\"",
-    "mtime": "2026-01-09T07:20:22.666Z",
-    "size": 3444,
-    "path": "../public/_nuxt/BgGYGHv6.js"
+    "etag": "\"146-/qPvDJnd1zAxa47oBJIQB//YwYI\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 326,
+    "path": "../public/_nuxt/B4yNQd5l.js"
   },
-  "/_nuxt/Bnh_HSIw.js": {
+  "/_nuxt/Bvc5Mmts.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"36c-HRTezlj6ILjggxggWU1Ww2eSkYs\"",
-    "mtime": "2026-01-09T07:20:22.667Z",
-    "size": 876,
-    "path": "../public/_nuxt/Bnh_HSIw.js"
+    "etag": "\"3df5-blw1jFTHvhlY6tkn5u7HY1tUbek\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 15861,
+    "path": "../public/_nuxt/Bvc5Mmts.js"
   },
-  "/_nuxt/CCH6G7Hy.js": {
+  "/_nuxt/CFXJGAj_.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"399-p8u9NSR7oPlYKnRvDfiUWBSnHg4\"",
-    "mtime": "2026-01-09T07:20:22.667Z",
-    "size": 921,
-    "path": "../public/_nuxt/CCH6G7Hy.js"
+    "etag": "\"1e16-tFJKLtse/CKN0D32jpFIDxUpTIk\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 7702,
+    "path": "../public/_nuxt/CFXJGAj_.js"
   },
-  "/_nuxt/default.B9Pr6rgu.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"34e-p8tEX6nxVt0mB66a+A+Uhat3Vqk\"",
-    "mtime": "2026-01-09T07:20:22.666Z",
-    "size": 846,
-    "path": "../public/_nuxt/default.B9Pr6rgu.css"
-  },
-  "/_nuxt/D18O-ANU.js": {
+  "/_nuxt/Cng_3R07.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"1df-Kx753iwHt+oTgYPAole/mhpbEd8\"",
-    "mtime": "2026-01-09T07:20:22.667Z",
+    "etag": "\"13f0-s1ymakhPhPVN/kBAiMpP1W/5nto\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 5104,
+    "path": "../public/_nuxt/Cng_3R07.js"
+  },
+  "/_nuxt/coat_rb.DCn-Qnj9.png": {
+    "type": "image/png",
+    "etag": "\"17567-JEhOieYwV1bcOZjPxm7PHuO335s\"",
+    "mtime": "2026-01-09T10:07:01.712Z",
+    "size": 95591,
+    "path": "../public/_nuxt/coat_rb.DCn-Qnj9.png"
+  },
+  "/_nuxt/CVH6VFo0.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"1df-aaQ8iNKkOH+K5zMP+Mx4UXuYbxA\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
     "size": 479,
-    "path": "../public/_nuxt/D18O-ANU.js"
+    "path": "../public/_nuxt/CVH6VFo0.js"
   },
-  "/_nuxt/DJuhMs_x.js": {
+  "/_nuxt/D4Upz-LX.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"f7-MdHl14YknX4aJ9u2v209MJDYJVI\"",
-    "mtime": "2026-01-09T07:20:22.667Z",
-    "size": 247,
-    "path": "../public/_nuxt/DJuhMs_x.js"
+    "etag": "\"dc6-7goEsfOLbc95fxc9bz07rDE1nFY\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 3526,
+    "path": "../public/_nuxt/D4Upz-LX.js"
   },
-  "/_nuxt/BvqydFy3.js": {
+  "/_nuxt/D53Llq_p.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"29303-i4dzMobrMlToR0O3h5Sco9xdHU8\"",
-    "mtime": "2026-01-09T07:20:22.666Z",
-    "size": 168707,
-    "path": "../public/_nuxt/BvqydFy3.js"
+    "etag": "\"11eb-3SJzcq3kLr/sgXprfCPWbdLt9nI\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 4587,
+    "path": "../public/_nuxt/D53Llq_p.js"
+  },
+  "/_nuxt/default.2tAF77Hn.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"1aca-hyJ5B+FZV9L/toCbmsHfOP3UJ9k\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 6858,
+    "path": "../public/_nuxt/default.2tAF77Hn.css"
   },
   "/_nuxt/DlAUqK2U.js": {
     "type": "text/javascript; charset=utf-8",
     "etag": "\"5b-eFCz/UrraTh721pgAl0VxBNR1es\"",
-    "mtime": "2026-01-09T07:20:22.667Z",
+    "mtime": "2026-01-09T10:07:01.713Z",
     "size": 91,
     "path": "../public/_nuxt/DlAUqK2U.js"
   },
-  "/_nuxt/error-404.CYUhy3y9.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"dca-005xQIrTNdE7LUqKJ7YOCC8lzEw\"",
-    "mtime": "2026-01-09T07:20:22.666Z",
-    "size": 3530,
-    "path": "../public/_nuxt/error-404.CYUhy3y9.css"
-  },
-  "/_nuxt/error-500.CVLkTsZM.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"75a-W5VxOFBjAs2NvcF8lJBDWJ0iI/o\"",
-    "mtime": "2026-01-09T07:20:22.666Z",
-    "size": 1882,
-    "path": "../public/_nuxt/error-500.CVLkTsZM.css"
-  },
-  "/_nuxt/index.CTqm7V-j.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"2e9-6REcYCQKr7VINd2TxSi+6agFlyo\"",
-    "mtime": "2026-01-09T07:20:22.666Z",
-    "size": 745,
-    "path": "../public/_nuxt/index.CTqm7V-j.css"
-  },
-  "/_nuxt/NLFw_fR4.js": {
+  "/_nuxt/Dj_AJlru.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"13f2-6LG0Jn37RE4jINx1WrgO6JPPIkA\"",
-    "mtime": "2026-01-09T07:20:22.667Z",
-    "size": 5106,
-    "path": "../public/_nuxt/NLFw_fR4.js"
+    "etag": "\"2e45e-zdz79bYg19owi8P6f2MAY2jA1YI\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 189534,
+    "path": "../public/_nuxt/Dj_AJlru.js"
+  },
+  "/_nuxt/entry.DofEms4m.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"1d2-SKegNlw0/BpMGGh042852FztMJo\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 466,
+    "path": "../public/_nuxt/entry.DofEms4m.css"
+  },
+  "/_nuxt/error-404.2GhCpCfF.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"97e-rj7LYDldeiZzQ/rAgQHuKm4R4CM\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 2430,
+    "path": "../public/_nuxt/error-404.2GhCpCfF.css"
+  },
+  "/_nuxt/error-500.DqdIhFrl.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"773-5c6J9Uy3GU9ENVOfwDGwZL5dQKk\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 1907,
+    "path": "../public/_nuxt/error-500.DqdIhFrl.css"
+  },
+  "/_nuxt/flag_rb.BJEWetts.png": {
+    "type": "image/png",
+    "etag": "\"1be8-gKIyRkcJQ6wBcneQ+sp7Jfib+E0\"",
+    "mtime": "2026-01-09T10:07:01.712Z",
+    "size": 7144,
+    "path": "../public/_nuxt/flag_rb.BJEWetts.png"
+  },
+  "/_nuxt/index.BSVTR0lH.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"a5f-QzCW1Ke1Uwb1JhDqIo7el+Z2UhI\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 2655,
+    "path": "../public/_nuxt/index.BSVTR0lH.css"
+  },
+  "/_nuxt/logo_bgtu.DcDEEwk0.png": {
+    "type": "image/png",
+    "etag": "\"16353-qFVQ83KLtO1dEyOa1ipi+0iCggw\"",
+    "mtime": "2026-01-09T10:07:01.712Z",
+    "size": 90963,
+    "path": "../public/_nuxt/logo_bgtu.DcDEEwk0.png"
+  },
+  "/_nuxt/logo_college.FVHgDG5w.png": {
+    "type": "image/png",
+    "etag": "\"3acd-NiD6ubJ3iOUITB0bKpapmD3zj3c\"",
+    "mtime": "2026-01-09T10:07:01.713Z",
+    "size": 15053,
+    "path": "../public/_nuxt/logo_college.FVHgDG5w.png"
   },
   "/_nuxt/builds/latest.json": {
     "type": "application/json",
-    "etag": "\"47-1uVq0NJzoGKhT2hiP71MrZAAjKQ\"",
-    "mtime": "2026-01-09T07:20:26.070Z",
+    "etag": "\"47-Dvot8WmyHp3c3KyBdaub8W857hU\"",
+    "mtime": "2026-01-09T10:07:02.829Z",
     "size": 71,
     "path": "../public/_nuxt/builds/latest.json"
   },
-  "/_nuxt/builds/meta/4e035e9d-1bfc-487e-af4d-966789e9ff49.json": {
+  "/_nuxt/builds/meta/9a5f0304-afbd-4129-badc-3a55dbcb0c35.json": {
     "type": "application/json",
-    "etag": "\"8b-d9PJs1L+FgjsWvnT2DKI/hpWNOk\"",
-    "mtime": "2026-01-09T07:20:26.071Z",
+    "etag": "\"8b-IqKQ75BMfVYzn367izXoqVxhwqA\"",
+    "mtime": "2026-01-09T10:07:02.830Z",
     "size": 139,
-    "path": "../public/_nuxt/builds/meta/4e035e9d-1bfc-487e-af4d-966789e9ff49.json"
+    "path": "../public/_nuxt/builds/meta/9a5f0304-afbd-4129-badc-3a55dbcb0c35.json"
+  },
+  "/_nuxt/college_bg.DX-3F2qG.jpg": {
+    "type": "image/jpeg",
+    "etag": "\"2aed22-MtDMN3up1Le3elvC+fGvwIzrcA8\"",
+    "mtime": "2026-01-09T10:07:01.715Z",
+    "size": 2813218,
+    "path": "../public/_nuxt/college_bg.DX-3F2qG.jpg"
   }
 };
 
@@ -4663,6 +4977,18 @@ const dirname = function(p) {
   }
   return segments.join("/") || (isAbsolute(p) ? "/" : ".");
 };
+const basename = function(p, extension) {
+  const segments = normalizeWindowsPath(p).split("/");
+  let lastSegment = "";
+  for (let i = segments.length - 1; i >= 0; i--) {
+    const val = segments[i];
+    if (val) {
+      lastSegment = val;
+      break;
+    }
+  }
+  return extension && lastSegment.endsWith(extension) ? lastSegment.slice(0, -extension.length) : lastSegment;
+};
 
 function readAsset (id) {
   const serverDir = dirname(fileURLToPath(globalThis._importMeta_.url));
@@ -4753,12 +5079,148 @@ const _jWNrpq = eventHandler((event) => {
 
 const _SxA8c9 = defineEventHandler(() => {});
 
+function defineRenderHandler(render) {
+  const runtimeConfig = useRuntimeConfig();
+  return eventHandler(async (event) => {
+    const nitroApp = useNitroApp();
+    const ctx = { event, render, response: void 0 };
+    await nitroApp.hooks.callHook("render:before", ctx);
+    if (!ctx.response) {
+      if (event.path === `${runtimeConfig.app.baseURL}favicon.ico`) {
+        setResponseHeader(event, "Content-Type", "image/x-icon");
+        return send(
+          event,
+          "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        );
+      }
+      ctx.response = await ctx.render(event);
+      if (!ctx.response) {
+        const _currentStatus = getResponseStatus(event);
+        setResponseStatus(event, _currentStatus === 200 ? 500 : _currentStatus);
+        return send(
+          event,
+          "No response returned from render handler: " + event.path
+        );
+      }
+    }
+    await nitroApp.hooks.callHook("render:response", ctx.response, ctx);
+    if (ctx.response.headers) {
+      setResponseHeaders(event, ctx.response.headers);
+    }
+    if (ctx.response.statusCode || ctx.response.statusMessage) {
+      setResponseStatus(
+        event,
+        ctx.response.statusCode,
+        ctx.response.statusMessage
+      );
+    }
+    return ctx.response.body;
+  });
+}
+
+function baseURL() {
+  return useRuntimeConfig().app.baseURL;
+}
+function buildAssetsDir() {
+  return useRuntimeConfig().app.buildAssetsDir;
+}
+function buildAssetsURL(...path) {
+  return joinRelativeURL(publicAssetsURL(), buildAssetsDir(), ...path);
+}
+function publicAssetsURL(...path) {
+  const app = useRuntimeConfig().app;
+  const publicBase = app.cdnURL || app.baseURL;
+  return path.length ? joinRelativeURL(publicBase, ...path) : publicBase;
+}
+
+const config = useRuntimeConfig();
+const dbConfig = {
+  host: config.dbHost,
+  user: config.dbUser,
+  password: config.dbPassword,
+  database: config.dbName,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+};
+const pool = mysql.createPool(dbConfig);
+async function queryWithLimit(sql, limit, offset) {
+  try {
+    const safeLimit = Math.max(1, Math.min(100, Math.floor(limit)));
+    if (offset !== void 0) ; else {
+      const fullSql = `${sql} LIMIT ${safeLimit}`;
+      const [results] = await pool.execute(fullSql);
+      return results;
+    }
+  } catch (error) {
+    console.error("Database query error:", error);
+    throw error;
+  }
+}
+
+const collections = {
+};
+
+const DEFAULT_ENDPOINT = "https://api.iconify.design";
+const _BRJzmX = defineCachedEventHandler(async (event) => {
+  const url = getRequestURL(event);
+  if (!url)
+    return createError$1({ status: 400, message: "Invalid icon request" });
+  const options = useAppConfig().icon;
+  const collectionName = event.context.params?.collection?.replace(/\.json$/, "");
+  const collection = collectionName ? await collections[collectionName]?.() : null;
+  const apiEndPoint = options.iconifyApiEndpoint || DEFAULT_ENDPOINT;
+  const icons = url.searchParams.get("icons")?.split(",");
+  if (collection) {
+    if (icons?.length) {
+      const data = getIcons(
+        collection,
+        icons
+      );
+      consola.debug(`[Icon] serving ${(icons || []).map((i) => "`" + collectionName + ":" + i + "`").join(",")} from bundled collection`);
+      return data;
+    }
+  }
+  if (options.fallbackToApi === true || options.fallbackToApi === "server-only") {
+    const apiUrl = new URL("./" + basename(url.pathname) + url.search, apiEndPoint);
+    consola.debug(`[Icon] fetching ${(icons || []).map((i) => "`" + collectionName + ":" + i + "`").join(",")} from iconify api`);
+    if (apiUrl.host !== new URL(apiEndPoint).host) {
+      return createError$1({ status: 400, message: "Invalid icon request" });
+    }
+    try {
+      const data = await $fetch(apiUrl.href);
+      return data;
+    } catch (e) {
+      consola.error(e);
+      if (e.status === 404)
+        return createError$1({ status: 404 });
+      else
+        return createError$1({ status: 500, message: "Failed to fetch fallback icon" });
+    }
+  }
+  return createError$1({ status: 404 });
+}, {
+  group: "nuxt",
+  name: "icon",
+  getKey(event) {
+    const collection = event.context.params?.collection?.replace(/\.json$/, "") || "unknown";
+    const icons = String(getQuery(event).icons || "");
+    return `${collection}_${icons.split(",")[0]}_${icons.length}_${hash$1(icons)}`;
+  },
+  swr: true,
+  maxAge: 60 * 60 * 24 * 7
+  // 1 week
+});
+
+const _lazy_YvRN7L = () => import('../routes/api/news.get.mjs');
 const _lazy_bMbvZV = () => import('../routes/renderer.mjs').then(function (n) { return n.r; });
 
 const handlers = [
   { route: '', handler: _jWNrpq, lazy: false, middleware: true, method: undefined },
+  { route: '/api/news', handler: _lazy_YvRN7L, lazy: true, middleware: false, method: "get" },
   { route: '/__nuxt_error', handler: _lazy_bMbvZV, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: _SxA8c9, lazy: false, middleware: false, method: undefined },
+  { route: '/api/_nuxt_icon/:collection', handler: _BRJzmX, lazy: false, middleware: false, method: undefined },
   { route: '/**', handler: _lazy_bMbvZV, lazy: true, middleware: false, method: undefined }
 ];
 
@@ -4902,45 +5364,6 @@ function useNitroApp() {
   return nitroApp;
 }
 runNitroPlugins(nitroApp);
-
-function defineRenderHandler(render) {
-  const runtimeConfig = useRuntimeConfig();
-  return eventHandler(async (event) => {
-    const nitroApp = useNitroApp();
-    const ctx = { event, render, response: void 0 };
-    await nitroApp.hooks.callHook("render:before", ctx);
-    if (!ctx.response) {
-      if (event.path === `${runtimeConfig.app.baseURL}favicon.ico`) {
-        setResponseHeader(event, "Content-Type", "image/x-icon");
-        return send(
-          event,
-          "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-        );
-      }
-      ctx.response = await ctx.render(event);
-      if (!ctx.response) {
-        const _currentStatus = getResponseStatus(event);
-        setResponseStatus(event, _currentStatus === 200 ? 500 : _currentStatus);
-        return send(
-          event,
-          "No response returned from render handler: " + event.path
-        );
-      }
-    }
-    await nitroApp.hooks.callHook("render:response", ctx.response, ctx);
-    if (ctx.response.headers) {
-      setResponseHeaders(event, ctx.response.headers);
-    }
-    if (ctx.response.statusCode || ctx.response.statusMessage) {
-      setResponseStatus(
-        event,
-        ctx.response.statusCode,
-        ctx.response.statusMessage
-      );
-    }
-    return ctx.response.body;
-  });
-}
 
 const debug = (...args) => {
 };
@@ -5188,5 +5611,5 @@ function setupGracefulShutdown(listener, nitroApp) {
   });
 }
 
-export { $fetch as $, withoutTrailingSlash as A, trapUnhandledNodeErrors as a, useNitroApp as b, getResponseStatus as c, destr as d, defineRenderHandler as e, getQuery as f, getResponseStatusText as g, createError$1 as h, getRouteRules as i, joinRelativeURL as j, hasProtocol as k, isScriptProtocol as l, joinURL as m, sanitizeStatusCode as n, getContext as o, createHooks as p, executeAsync as q, toRouteMatcher as r, setupGracefulShutdown as s, toNodeListener as t, useRuntimeConfig as u, createRouter$1 as v, withQuery as w, defu as x, parseQuery as y, withTrailingSlash as z };
+export { $fetch$1 as $, executeAsync as A, toRouteMatcher as B, createRouter$1 as C, defu as D, hash$1 as E, parseQuery as F, withTrailingSlash as G, withoutTrailingSlash as H, trapUnhandledNodeErrors as a, useNitroApp as b, defineEventHandler as c, destr as d, createError$1 as e, buildAssetsURL as f, getQuery as g, getResponseStatusText as h, getResponseStatus as i, defineRenderHandler as j, getRouteRules as k, klona as l, defuFn as m, hasProtocol as n, isScriptProtocol as o, publicAssetsURL as p, queryWithLimit as q, joinURL as r, setupGracefulShutdown as s, toNodeListener as t, useRuntimeConfig as u, sanitizeStatusCode as v, withQuery as w, getContext as x, baseURL as y, createHooks as z };
 //# sourceMappingURL=nitro.mjs.map

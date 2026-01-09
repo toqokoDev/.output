@@ -7,7 +7,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   __ssrInlineRender: true,
   setup(__props) {
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "about-container" }, _attrs))} data-v-357fee42><h1 data-v-357fee42>\u041E \u043D\u0430\u0441</h1><p data-v-357fee42>\u042D\u0442\u043E \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0430 &quot;\u041E \u043D\u0430\u0441&quot; \u0434\u043B\u044F \u043F\u0440\u043E\u0435\u043A\u0442\u0430 BGLK Site.</p><p data-v-357fee42>\u041F\u0440\u043E\u0435\u043A\u0442 \u0441\u043E\u0437\u0434\u0430\u043D \u0441 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435\u043C Nuxt 3 \u0438 TypeScript.</p></div>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "about-container" }, _attrs))} data-v-357fee42><h1 data-v-357fee42>О нас</h1><p data-v-357fee42>Это страница &quot;О нас&quot; для проекта BGLK Site.</p><p data-v-357fee42>Проект создан с использованием Nuxt 3 и TypeScript.</p></div>`);
     };
   }
 });

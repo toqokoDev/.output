@@ -1,24 +1,22 @@
 import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { hasInjectionContext, getCurrentInstance, defineAsyncComponent, defineComponent, h, inject, computed, unref, shallowRef, provide, shallowReactive, ref, Suspense, Fragment, useSSRContext, createApp, withCtx, createVNode, toRef, onErrorCaptured, onServerPrefetch, resolveDynamicComponent, reactive, effectScope, isReadonly, isRef, isShallow, isReactive, toRaw, nextTick, mergeProps, getCurrentScope } from 'vue';
-import { k as hasProtocol, l as isScriptProtocol, m as joinURL, w as withQuery, n as sanitizeStatusCode, o as getContext, $ as $fetch, p as createHooks, q as executeAsync, h as createError$1, r as toRouteMatcher, v as createRouter$1, x as defu } from '../_/nitro.mjs';
-import { b as baseURL } from '../routes/renderer.mjs';
+import { l as klona, m as defuFn, e as createError$1, n as hasProtocol, o as isScriptProtocol, r as joinURL, w as withQuery, v as sanitizeStatusCode, x as getContext, $ as $fetch$1, y as baseURL, z as createHooks, A as executeAsync, B as toRouteMatcher, C as createRouter$1, D as defu } from '../_/nitro.mjs';
 import { useRoute as useRoute$1, RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
+import { _api, addAPIProvider, setCustomIconsLoader } from '@iconify/vue';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderSuspense, ssrRenderVNode } from 'vue/server-renderer';
+import 'mysql2/promise';
 import 'node:http';
 import 'node:https';
 import 'node:events';
 import 'node:buffer';
 import 'node:fs';
-import 'node:path';
-import 'node:crypto';
 import 'node:url';
-import 'vue-bundle-renderer/runtime';
-import 'unhead/server';
-import 'devalue';
-import 'unhead/utils';
-import 'unhead/plugins';
+import '@iconify/utils';
+import 'node:crypto';
+import 'consola';
+import 'node:path';
 
 if (!globalThis.$fetch) {
-  globalThis.$fetch = $fetch.create({
+  globalThis.$fetch = $fetch$1.create({
     baseURL: baseURL()
   });
 }
@@ -27,6 +25,8 @@ if (!("global" in globalThis)) {
 }
 const appLayoutTransition = false;
 const nuxtLinkDefaults = { "componentName": "NuxtLink" };
+const asyncDataDefaults = { "deep": false };
+const fetchDefaults = {};
 const appId = "nuxt-app";
 function getNuxtAppCtx(id = appId) {
   return getContext(id, {
@@ -40,10 +40,9 @@ function createNuxtApp(options) {
     _id: options.id || appId || "nuxt-app",
     _scope: effectScope(),
     provide: void 0,
-    globalName: "nuxt",
     versions: {
       get nuxt() {
-        return "3.20.2";
+        return "4.2.2";
       },
       get vue() {
         return nuxtApp.vueApp.version;
@@ -392,7 +391,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DRGwNiM0.mjs')
+    component: () => import('./index-Rxm-0chU.mjs')
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -730,17 +729,316 @@ const revive_payload_server_MVtmlZaQpj6ApFmshWfUWl5PehCebzaBf2NuRMiIbms = /* @__
     }
   }
 });
-const components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4 = /* @__PURE__ */ defineNuxtPlugin({
-  name: "nuxt:global-components"
+const LazyIcon = defineAsyncComponent(() => import('./index-DYKrTv6o.mjs').then((n) => n.i).then((r) => r["default"] || r.default || r));
+const lazyGlobalComponents = [
+  ["Icon", LazyIcon]
+];
+const components_plugin_4kY4pyzJIYX99vmMAAIorFf3CnAaptHitJgf7JxiED8 = /* @__PURE__ */ defineNuxtPlugin({
+  name: "nuxt:global-components",
+  setup(nuxtApp) {
+    for (const [name, component] of lazyGlobalComponents) {
+      nuxtApp.vueApp.component(name, component);
+      nuxtApp.vueApp.component("Lazy" + name, component);
+    }
+  }
+});
+const inlineConfig = {
+  "nuxt": {},
+  "icon": {
+    "provider": "server",
+    "class": "",
+    "aliases": {},
+    "iconifyApiEndpoint": "https://api.iconify.design",
+    "localApiEndpoint": "/api/_nuxt_icon",
+    "fallbackToApi": true,
+    "cssSelectorPrefix": "i-",
+    "cssWherePseudo": true,
+    "mode": "css",
+    "attrs": {
+      "aria-hidden": true
+    },
+    "collections": [
+      "academicons",
+      "akar-icons",
+      "ant-design",
+      "arcticons",
+      "basil",
+      "bi",
+      "bitcoin-icons",
+      "bpmn",
+      "brandico",
+      "bx",
+      "bxl",
+      "bxs",
+      "bytesize",
+      "carbon",
+      "catppuccin",
+      "cbi",
+      "charm",
+      "ci",
+      "cib",
+      "cif",
+      "cil",
+      "circle-flags",
+      "circum",
+      "clarity",
+      "codex",
+      "codicon",
+      "covid",
+      "cryptocurrency",
+      "cryptocurrency-color",
+      "cuida",
+      "dashicons",
+      "devicon",
+      "devicon-plain",
+      "dinkie-icons",
+      "duo-icons",
+      "ei",
+      "el",
+      "emojione",
+      "emojione-monotone",
+      "emojione-v1",
+      "entypo",
+      "entypo-social",
+      "eos-icons",
+      "ep",
+      "et",
+      "eva",
+      "f7",
+      "fa",
+      "fa-brands",
+      "fa-regular",
+      "fa-solid",
+      "fa6-brands",
+      "fa6-regular",
+      "fa6-solid",
+      "fa7-brands",
+      "fa7-regular",
+      "fa7-solid",
+      "fad",
+      "famicons",
+      "fe",
+      "feather",
+      "file-icons",
+      "flag",
+      "flagpack",
+      "flat-color-icons",
+      "flat-ui",
+      "flowbite",
+      "fluent",
+      "fluent-color",
+      "fluent-emoji",
+      "fluent-emoji-flat",
+      "fluent-emoji-high-contrast",
+      "fluent-mdl2",
+      "fontelico",
+      "fontisto",
+      "formkit",
+      "foundation",
+      "fxemoji",
+      "gala",
+      "game-icons",
+      "garden",
+      "geo",
+      "gg",
+      "gis",
+      "gravity-ui",
+      "gridicons",
+      "grommet-icons",
+      "guidance",
+      "healthicons",
+      "heroicons",
+      "heroicons-outline",
+      "heroicons-solid",
+      "hugeicons",
+      "humbleicons",
+      "ic",
+      "icomoon-free",
+      "icon-park",
+      "icon-park-outline",
+      "icon-park-solid",
+      "icon-park-twotone",
+      "iconamoon",
+      "iconoir",
+      "icons8",
+      "il",
+      "ion",
+      "iwwa",
+      "ix",
+      "jam",
+      "la",
+      "lets-icons",
+      "line-md",
+      "lineicons",
+      "logos",
+      "ls",
+      "lsicon",
+      "lucide",
+      "lucide-lab",
+      "mage",
+      "majesticons",
+      "maki",
+      "map",
+      "marketeq",
+      "material-icon-theme",
+      "material-symbols",
+      "material-symbols-light",
+      "mdi",
+      "mdi-light",
+      "medical-icon",
+      "memory",
+      "meteocons",
+      "meteor-icons",
+      "mi",
+      "mingcute",
+      "mono-icons",
+      "mynaui",
+      "nimbus",
+      "nonicons",
+      "noto",
+      "noto-v1",
+      "nrk",
+      "octicon",
+      "oi",
+      "ooui",
+      "openmoji",
+      "oui",
+      "pajamas",
+      "pepicons",
+      "pepicons-pencil",
+      "pepicons-pop",
+      "pepicons-print",
+      "ph",
+      "picon",
+      "pixel",
+      "pixelarticons",
+      "prime",
+      "proicons",
+      "ps",
+      "qlementine-icons",
+      "quill",
+      "radix-icons",
+      "raphael",
+      "ri",
+      "rivet-icons",
+      "roentgen",
+      "si",
+      "si-glyph",
+      "sidekickicons",
+      "simple-icons",
+      "simple-line-icons",
+      "skill-icons",
+      "solar",
+      "stash",
+      "streamline",
+      "streamline-block",
+      "streamline-color",
+      "streamline-cyber",
+      "streamline-cyber-color",
+      "streamline-emojis",
+      "streamline-flex",
+      "streamline-flex-color",
+      "streamline-freehand",
+      "streamline-freehand-color",
+      "streamline-kameleon-color",
+      "streamline-logos",
+      "streamline-pixel",
+      "streamline-plump",
+      "streamline-plump-color",
+      "streamline-sharp",
+      "streamline-sharp-color",
+      "streamline-stickies-color",
+      "streamline-ultimate",
+      "streamline-ultimate-color",
+      "subway",
+      "svg-spinners",
+      "system-uicons",
+      "tabler",
+      "tdesign",
+      "teenyicons",
+      "temaki",
+      "token",
+      "token-branded",
+      "topcoat",
+      "twemoji",
+      "typcn",
+      "uil",
+      "uim",
+      "uis",
+      "uit",
+      "uiw",
+      "unjs",
+      "vaadin",
+      "vs",
+      "vscode-icons",
+      "websymbol",
+      "weui",
+      "whh",
+      "wi",
+      "wpf",
+      "zmdi",
+      "zondicons"
+    ],
+    "fetchTimeout": 1500
+  }
+};
+const __appConfig = /* @__PURE__ */ defuFn(inlineConfig);
+function useAppConfig() {
+  const nuxtApp = useNuxtApp();
+  nuxtApp._appConfig ||= klona(__appConfig);
+  return nuxtApp._appConfig;
+}
+const plugin_MeUvTuoKUi51yb_kBguab6hdcExVXeTtZtTg9TZZBB8 = /* @__PURE__ */ defineNuxtPlugin({
+  name: "@nuxt/icon",
+  setup() {
+    const configs = /* @__PURE__ */ useRuntimeConfig();
+    const options = useAppConfig().icon;
+    _api.setFetch($fetch.native);
+    const resources = [];
+    if (options.provider === "server") {
+      const baseURL2 = configs.app?.baseURL?.replace(/\/$/, "") ?? "";
+      resources.push(baseURL2 + (options.localApiEndpoint || "/api/_nuxt_icon"));
+      if (options.fallbackToApi === true || options.fallbackToApi === "client-only") {
+        resources.push(options.iconifyApiEndpoint);
+      }
+    } else if (options.provider === "none") {
+      _api.setFetch(() => Promise.resolve(new Response()));
+    } else {
+      resources.push(options.iconifyApiEndpoint);
+    }
+    async function customIconLoader(icons, prefix) {
+      try {
+        const data = await $fetch(resources[0] + "/" + prefix + ".json", {
+          query: {
+            icons: icons.join(",")
+          }
+        });
+        if (!data || data.prefix !== prefix || !data.icons)
+          throw new Error("Invalid data" + JSON.stringify(data));
+        return data;
+      } catch (e) {
+        console.error("Failed to load custom icons", e);
+        return null;
+      }
+    }
+    addAPIProvider("", { resources });
+    for (const prefix of options.customCollections || []) {
+      if (prefix)
+        setCustomIconsLoader(customIconLoader, prefix);
+    }
+  }
+  // For type portability
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 });
 const plugins = [
   unhead_k2P3m_ZDyjlr2mMYnoDPwavjsDN8hBlk9cFai0bbopU,
   plugin,
   revive_payload_server_MVtmlZaQpj6ApFmshWfUWl5PehCebzaBf2NuRMiIbms,
-  components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4
+  components_plugin_4kY4pyzJIYX99vmMAAIorFf3CnAaptHitJgf7JxiED8,
+  plugin_MeUvTuoKUi51yb_kBguab6hdcExVXeTtZtTg9TZZBB8
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-0iVKdsn_.mjs').then((m) => m.default || m))
+  default: defineAsyncComponent(() => import('./default-DfN9jFpm.mjs').then((m) => m.default || m))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -996,8 +1294,8 @@ const _sfc_main$1 = {
     const statusMessage = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-CgMOVgoP.mjs'));
-    const _Error = defineAsyncComponent(() => import('./error-500-DWO4NuSH.mjs'));
+    const _Error404 = defineAsyncComponent(() => import('./error-404-4fdzs-uZ.mjs'));
+    const _Error = defineAsyncComponent(() => import('./error-500-CFSsC1d5.mjs'));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ statusCode: unref(statusCode), statusMessage: unref(statusMessage), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
@@ -1078,5 +1376,5 @@ let entry;
 }
 const entry_default = (ssrContext) => entry(ssrContext);
 
-export { useNuxtApp as a, useRuntimeConfig as b, nuxtLinkDefaults as c, entry_default as default, navigateTo as n, resolveRouteObject as r, tryUseNuxtApp as t, useRouter as u };
+export { useRouter as a, useRuntimeConfig as b, nuxtLinkDefaults as c, useAppConfig as d, entry_default as default, asyncDataDefaults as e, fetchDefaults as f, createError as g, navigateTo as n, resolveRouteObject as r, useNuxtApp as u };
 //# sourceMappingURL=server.mjs.map

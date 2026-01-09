@@ -1,11 +1,10 @@
 import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'vue-bundle-renderer/runtime';
-import { j as joinRelativeURL, u as useRuntimeConfig, g as getResponseStatusText, c as getResponseStatus, e as defineRenderHandler, f as getQuery, h as createError, i as getRouteRules, b as useNitroApp } from '../_/nitro.mjs';
+import { f as buildAssetsURL, u as useRuntimeConfig, h as getResponseStatusText, i as getResponseStatus, j as defineRenderHandler, p as publicAssetsURL, g as getQuery, e as createError, d as destr, k as getRouteRules, b as useNitroApp } from '../_/nitro.mjs';
 import { renderToString } from 'vue/server-renderer';
 import { createHead as createHead$1, propsToString, renderSSRHead } from 'unhead/server';
 import { stringify, uneval } from 'devalue';
 import { walkResolver } from 'unhead/utils';
 import { toValue, isRef, hasInjectionContext, inject, ref, watchEffect, getCurrentInstance, onBeforeUnmount, onDeactivated, onActivated } from 'vue';
-import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'unhead/plugins';
 
 const VueResolver = (_, value) => {
   return isRef(value) ? toValue(value) : value;
@@ -85,22 +84,11 @@ const appTeleportTag = "div";
 
 const appTeleportAttrs = {"id":"teleports"};
 
-const appId = "nuxt-app";
+const appSpaLoaderTag = "div";
 
-function baseURL() {
-  return useRuntimeConfig().app.baseURL;
-}
-function buildAssetsDir() {
-  return useRuntimeConfig().app.buildAssetsDir;
-}
-function buildAssetsURL(...path) {
-  return joinRelativeURL(publicAssetsURL(), buildAssetsDir(), ...path);
-}
-function publicAssetsURL(...path) {
-  const app = useRuntimeConfig().app;
-  const publicBase = app.cdnURL || app.baseURL;
-  return path.length ? joinRelativeURL(publicBase, ...path) : publicBase;
-}
+const appSpaLoaderAttrs = {"id":"__nuxt-loader"};
+
+const appId = "nuxt-app";
 
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
@@ -128,7 +116,11 @@ const getSPARenderer = lazyCachedFunction(async () => {
   const precomputed = await getPrecomputedDependencies();
   const spaTemplate = await import('../virtual/_virtual_spa-template.mjs').then((r) => r.template).catch(() => "").then((r) => {
     {
-      return APP_ROOT_OPEN_TAG + r + APP_ROOT_CLOSE_TAG;
+      const APP_SPA_LOADER_OPEN_TAG = `<${appSpaLoaderTag}${propsToString(appSpaLoaderAttrs)}>`;
+      const APP_SPA_LOADER_CLOSE_TAG = `</${appSpaLoaderTag}>`;
+      const appTemplate = APP_ROOT_OPEN_TAG + APP_ROOT_CLOSE_TAG;
+      const loaderTemplate = r ? APP_SPA_LOADER_OPEN_TAG + r + APP_SPA_LOADER_CLOSE_TAG : "";
+      return appTemplate + loaderTemplate;
     }
   });
   const renderer = createRenderer(() => () => {
@@ -214,8 +206,6 @@ function splitPayload(ssrContext) {
 
 const unheadOptions = {
   disableDefaults: true,
-  disableCapoSorting: false,
-  plugins: [DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin],
 };
 
 function createSSRContext(event) {
@@ -253,9 +243,9 @@ async function renderInlineStyles(usedModules) {
   return Array.from(inlinedStyles).map((style) => ({ innerHTML: style }));
 }
 
-const renderSSRHeadOptions = {"omitLineBreaks":false};
+const renderSSRHeadOptions = {"omitLineBreaks":true};
 
-const entryIds = ["node_modules/nuxt/dist/app/entry.js"];
+const entryIds = [];
 
 globalThis.__buildAssetsURL = buildAssetsURL;
 globalThis.__publicAssetsURL = publicAssetsURL;
@@ -277,6 +267,12 @@ const renderer = defineRenderHandler(async (event) => {
   ssrContext.head.push(appHead, headEntryOptions);
   if (ssrError) {
     ssrError.statusCode &&= Number.parseInt(ssrError.statusCode);
+    if (typeof ssrError.data === "string") {
+      try {
+        ssrError.data = destr(ssrError.data);
+      } catch {
+      }
+    }
     setSSRError(ssrContext, ssrError);
   }
   const isRenderingPayload = PAYLOAD_URL_RE.test(ssrContext.url);
@@ -415,5 +411,5 @@ const renderer$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty
   default: renderer
 }, Symbol.toStringTag, { value: 'Module' }));
 
-export { baseURL as b, headSymbol as h, renderer$1 as r, useHead as u };
+export { headSymbol as h, renderer$1 as r, useHead as u };
 //# sourceMappingURL=renderer.mjs.map
